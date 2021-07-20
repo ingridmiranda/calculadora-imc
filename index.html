@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="assets/plus.png">
+        </div>
+        <div>
+            <h3>Menu</h3>
+            <h3>Sobre nós</h3>
+            <h3>Contato</h3>
+        </div>
+    </nav>
+
+    <section class="initial-container">
+        <div>
+            <h1>Entendendo o significado e a importância do IMC para sua saúde</h1>
+        </div>
+        <div>
+            <a class="button" onclick="saibaMais()">Saiba mais</a>
+            <a class="button" onclick="calculate()">Calcule o seu</a>
+<!--             <h3>Saiba mais sobre o que é, entenda sua importância e realize o cálculo do seu!</h3>
+ -->        </div>
+    </section>
+
+    <section  class="second-container" id="1">
+        <div>
+            <img src="assets/african-2027619_1280.png">
+        </div>
+        <div>
+            <h1>O que é o IMC?</h1>
+            <h2>A sigla IMC significa Índice de Massa Corporal e é um método utilizado para aferir se o peso de um indivíduo está de acordo com a sua altura. E esse é um fator que pode interferir diretamente tanto na saúde quanto na qualidade de vida.</h2>
+            <h2>Desse modo, a partir do resultado do IMC é possível também saber se a pessoa está dentro do peso ideal ou identificar casos de sobrepeso, obesidade ou desnutrição. Que podem ocorrer em crianças, adolescentes, adultos ou idosos. </h2>
+            <h2>Sendo assim, com o cálculo do IMC, é possível saber se há necessidade de realizar adaptações na rotina diária. Como, por exemplo, mudar a dieta, melhorar os hábitos alimentares e praticar mais atividade física de forma regular.</h2>
+        </div>
+    </section>
+
+    <section class="third-container">
+        <div>
+            <h1>E se meu índice estiver elevado?</h1>
+            <h2>Apesar desse índice ser fundamental para conhecer o estado nutricional da pessoa, é fundamental que outros parâmetros sejam avaliados para saber mais detalhes do estado geral de saúde. Isso ocorre, pois pessoas com mais idades, mulheres grávidas ou pessoas que possuem muitos músculos podem ter um resultado fora do que é considerado normal. Portanto, é importante encontrar um profissional capaz de avaliar além do IMC e do peso ideal, o nível de hidratação, a massa muscular e o nível de atividade física.</h2>
+        </div>
+        <div>
+            <img src="assets/obese-3011213_1920.jpg">
+        </div>
+    </section>
+
+    <section class="calculate-container" id="2">
+        <h1>Vamos calcular?</h1>
+        <div>
+            <h2>Digite seu peso (kg)</h2>
+            <input type="text" id="pesoUsuario" placeholder="60.5"/>
+            <h2>Digite sua altura (m)</h2>
+            <input type="text" id="alturaUsuario" placeholder="1.60"/>
+            <a onclick="calcularImc()">Obter resultado</a>
+        </div>
+    </section>
+
+    <section class="result-container">
+        <div>
+            <h1 class="result-value">Está esperando o que?!</h1>
+            <h2 class="result-value"></h2>
+            <h2 class="result-value">Realize seu teste acima e descubra como anda sua saúde</h2>
+        </div>
+        <div>
+            <img src="assets/medical-5459630_1280.png">
+        </div>
+    </section>
+
+    <script>
+        function calcularImc() {
+            const peso = document.getElementById('pesoUsuario').value;
+            const altura = document.getElementById('alturaUsuario').value;
+            const imc = (peso/(altura*altura)).toFixed(2);
+            if (peso == ""){
+                alert("Ops! Você deve digitar um peso...");
+            } else if (altura == ""){
+                alert("Ops! Você deve digitar uma altura...");
+            } else if (imc == "NaN"){
+                alert("Ops! Os valores que você inseriu não estão corretos. Observe atentamente o exemplo e tente novamente...");
+            } else{
+
+                const title = document.getElementsByClassName('result-value')[0];
+                title.innerHTML = "RESULTADO";
+
+                const resultado = document.getElementsByClassName('result-value')[1];
+                resultado.innerHTML = "O seu índice de massa corporal é de "
+                resultado.innerHTML += imc;
+
+                const classificacao = document.getElementsByClassName('result-value')[2];
+                classificacao.innerHTML = "Então sua classificação é: ";
+
+                if (imc < 18.5){
+                    classificacao.innerHTML += "Magreza";
+                } else if (imc >= 18.5 && imc<=24.9){
+                    classificacao.innerHTML += "Normal";
+                } else if (imc >= 25 && imc<=29.9){
+                    classificacao.innerHTML += "Sobrepeso - Obesidade Grau I";
+                } else if (imc >= 30 && imc<=39.9){
+                    classificacao.innerHTML += "Obesidade Grau II";
+                } else if (imc > 40){
+                    classificacao.innerHTML += "Obesidade Grave - Grau III";
+                }   
+            }  
+        }
+    
+        function saibaMais(){
+            window.location.href='#1';
+        }  
+        
+        function calculate(){
+            window.location.href='#2';
+        }  
+    </script>
+</body>
+</html>
